@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta Oficial BrewLog -->
+    <color name="amber_primary">#D97706</color>      <!-- Ámbar cervecero -->
+    <color name="amber_dark">#B45309</color>         <!-- Cobrizo / Marrón oscuro -->
+    <color name="foam_white">#FFFBEB</color>         <!-- Blanco espuma (Fondo) -->
+    <color name="malt_brown">#451A03</color>         <!-- Marrón malta (Texto principal) -->
+    <color name="card_background">#FFFFFF</color>     <!-- Blanco tarjetas -->
+    <color name="hops_green">#16A34A</color>         <!-- Verde lúpulo -->
+</resources>
