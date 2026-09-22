@@ -1,10 +1,9 @@
 package com.example.brewlog
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kotlin.random.Random
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,25 +11,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 1. Vincular componentes del XML con el código Kotlin
-        val tvTemperatura = findViewById<TextView>(R.id.tvTemperatura)
-        val tvPh = findViewById<TextView>(R.id.tvPh)
-        val tvTiempo = findViewById<TextView>(R.id.tvTiempo)
-        val btnSimular = findViewById<Button>(R.id.btnSimular)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        var minutosTranscurridos = 45
+        // Cargar por defecto el fragment de Inicio
+        replaceFragment(InicioFragment())
 
-        // 2. Configurar la acción al presionar el botón
-        btnSimular.setOnClickListener {
-            // Simulación de valores aleatorios realistas de Arduino
-            val tempAleatoria = Random.nextDouble(62.0, 68.0)
-            val phAleatorio = Random.nextDouble(5.0, 5.6)
-            minutosTranscurridos += 1
-
-            // Formatear datos y mostrarlos en pantalla
-            tvTemperatura.text = String.format("%.1f °C", tempAleatoria)
-            tvPh.text = String.format("%.2f pH", phAleatorio)
-            tvTiempo.text = String.format("00:%02d:00 min", minutosTranscurridos)
+        // Escuchar clics en la barra de navegación
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_inicio -> replaceFragment(InicioFragment())
+                R.id.nav_monitoreo -> replaceFragment(MonitoreoFragment())
+                R.id.nav_recetas -> replaceFragment(RecetasFragment())
+                R.id.nav_config -> replaceFragment(ConfigFragment())
+            }
+            true
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }

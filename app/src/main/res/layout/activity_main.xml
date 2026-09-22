@@ -1,154 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/foam_white"
-    android:padding="16dp">
+    android:background="@color/foam_white">
 
-    <LinearLayout
+    <!-- Contenedor donde se cargarán las pantallas/fragments -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation" />
+
+    <!-- Barra de Navegación Inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconTint="@color/amber_primary"
+        app:itemTextColor="@color/malt_brown"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <!-- LOGO Y TÍTULO -->
-        <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="220dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="16dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="Logo BrewLog"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo_brewlog" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Monitoreo en Tiempo Real"
-            android:textColor="@color/amber_dark"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- TARJETA 1: TEMPERATURA -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/card_background">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🌡️ Temperatura del Macerado"
-                    android:textColor="@color/malt_brown"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvTemperatura"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="65.5 °C"
-                    android:textColor="@color/amber_primary"
-                    android:textSize="32sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- TARJETA 2: pH -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/card_background">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🧪 Nivel de pH"
-                    android:textColor="@color/malt_brown"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvPh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="5.2 pH (Óptimo)"
-                    android:textColor="@color/hops_green"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- TARJETA 3: CO2 / TIEMPO -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="@color/card_background">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="⏱️ Tiempo de Proceso"
-                    android:textColor="@color/malt_brown"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvTiempo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="00:45:12 min"
-                    android:textColor="@color/malt_brown"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- BOTÓN DE SIMULACIÓN ARDUINO -->
-        <Button
-            android:id="@+id/btnSimular"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:backgroundTint="@color/amber_primary"
-            android:text="Simular Lectura de Arduino"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>
